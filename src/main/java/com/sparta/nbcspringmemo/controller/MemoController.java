@@ -4,7 +4,6 @@ package com.sparta.nbcspringmemo.controller;
 import com.sparta.nbcspringmemo.dto.MemoRequestDto;
 import com.sparta.nbcspringmemo.dto.MemoResponseDto;
 import com.sparta.nbcspringmemo.service.MemoService;
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -12,11 +11,11 @@ import java.util.List;
 @RestController
 @RequestMapping("/api")
 public class MemoController {
-
+// MemoController > MemoService > MemoRepository
     private final MemoService memoService;
 
-    public MemoController(JdbcTemplate jdbcTemplate) {
-        this.memoService = new MemoService(jdbcTemplate);
+    public MemoController(MemoService memoService) {
+        this.memoService = memoService;
     }
 
     @PostMapping("/memos")
