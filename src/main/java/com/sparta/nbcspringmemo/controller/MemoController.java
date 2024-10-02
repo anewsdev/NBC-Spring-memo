@@ -13,35 +13,31 @@ import java.util.List;
 @RequestMapping("/api")
 public class MemoController {
 
-    private final JdbcTemplate jdbcTemplate;
+    private final MemoService memoService;
 
     public MemoController(JdbcTemplate jdbcTemplate) {
-        this.jdbcTemplate = jdbcTemplate;
+        this.memoService = new MemoService(jdbcTemplate);
     }
 
     @PostMapping("/memos")
     public MemoResponseDto createMemo(@RequestBody MemoRequestDto requestDto) {
-        MemoService memoService = new MemoService(jdbcTemplate);//메모 서비스 인스턴스화
         return memoService.createMemo(requestDto);//메모 서비스의 크레이트 메모 메서드로 리퀘스트디티오 전달
 
     }
 
     @GetMapping("/memos")
     public List<MemoResponseDto> getMemos() {
-        MemoService memoService = new MemoService(jdbcTemplate);
         return memoService.getMemos();
     }
 
     @PutMapping("/memos/{id}")
     public Long updateMemo(@PathVariable Long id, @RequestBody MemoRequestDto requestDto) {
-        MemoService memoService = new MemoService(jdbcTemplate);
         return memoService.updateMemo(id, requestDto);
 
     }
 
     @DeleteMapping("/memos/{id}")
     public Long deleteMemo(@PathVariable Long id) {
-        MemoService memoService = new MemoService(jdbcTemplate);
         return memoService.deleteMemo(id);
     }
 }
