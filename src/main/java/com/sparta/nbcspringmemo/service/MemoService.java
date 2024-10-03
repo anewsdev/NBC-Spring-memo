@@ -4,11 +4,11 @@ import com.sparta.nbcspringmemo.dto.MemoRequestDto;
 import com.sparta.nbcspringmemo.dto.MemoResponseDto;
 import com.sparta.nbcspringmemo.entity.Memo;
 import com.sparta.nbcspringmemo.repository.MemoRepository;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
-@Service
+@Component
 public class MemoService {
     private final MemoRepository memoRepository;
 
